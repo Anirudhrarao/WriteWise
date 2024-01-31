@@ -1,0 +1,29 @@
+<section class="blog-posts mt-5">
+    <div class="row">
+        {% for post in user_posts %}
+            <div class="col-md-4 mb-4">
+                <div class="card post-card">
+                    <img src="{{ post.featured_image.url }}" class="card-img-top" alt="Article Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.content | truncatewords:10 }}</p>
+                        {% if request.user.is_authenticated %}
+                            {% if request.user == post.author %}
+                                <a href="{% url "blog-page" post.id %}" class="btn btn-outline-primary">Read more</a>
+                                <a href="{% url "update-post" post.id %}" class="btn btn-outline-secondary">Update</a>
+                                <a href="{% url "delete-post" post.id %}" class="btn btn-outline-danger">Delete</a>
+                            {% else %}
+                                <a href="{% url "blog-page" post.id %}" class="btn btn-outline-primary">Read more</a>
+                            {% endif %}
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-md-12">
+                <p>No posts yet!</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>

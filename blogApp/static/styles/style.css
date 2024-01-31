@@ -1,0 +1,176 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Basic styling for header */
+  header {
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  /* Styling for hero section */
+  .hero {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #e5e5e5;
+  }
+  
+  /* Cursive font for heading */
+  .cursive-heading {
+    font-family: 'Roboto Slab', serif;
+  }
+  
+  /* Styling for blog post section */
+  .blog-posts {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0;
+  }
+  
+  .blog-posts article {
+    flex: 0 1 45%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .blog-posts article img {
+    width: 300px; /* Set your preferred width */
+    height: 200px; /* Set your preferred height */
+    object-fit: cover;
+  }
+  
+  .blog-posts h2 {
+    margin-bottom: 10px;
+  }
+  
+  .blog-posts p {
+    color: #666;
+  }
+  
+  .blog-posts a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .blog-posts a:hover {
+    color: #000;
+  }
+
+
+
+/* profile custom style */
+.profile-section {
+  padding: 20px;
+  border: 1px solid #eaeaea;
+  margin-bottom: 30px;
+  background-color: #fff;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.profile-img-container {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 30px;
+  animation: zoomIn 0.5s ease forwards;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  animation: slideInLeft 0.5s ease 0.5s forwards;
+}
+
+.profile-bio {
+  margin-bottom: 10px;
+  color: #555;
+  animation: slideInLeft 0.5s ease 0.8s forwards;
+}
+
+.profile-stats {
+  display: flex;
+  margin-bottom: 10px;
+  animation: slideInLeft 0.5s ease 1s forwards;
+}
+
+.stat {
+  margin-right: 20px;
+}
+
+.stat-count {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+
+
+/* Adjust Bootstrap buttons or use custom styles */
+
+
+/* Keyframe animations */
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+      opacity: 0;
+      transform: scale(0.8);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+      opacity: 0;
+      transform: translateX(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}

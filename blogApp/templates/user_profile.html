@@ -1,0 +1,49 @@
+<!-- user_profile.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-section">
+    <div class="row align-items-center">
+        <div class="col-md-4">
+            <div class="profile-img-container">
+                <img src="/media/{{ viewed_user_profile.profile_picture }}" alt="Profile Picture" class="profile-img img-fluid rounded-circle">
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="profile-info">
+                <h2 class="profile-name">{{ viewed_user_profile.user.username}}</h2>
+                {% if can_view_profile %}
+                    <p class="profile-bio">{{ viewed_user_profile.bio }}</p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="stat">
+                                <span class="stat-count">{{ post_count }}</span> posts
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat">
+                                <span class="stat-count" data-toggle="modal" data-target="#followersModal">{{ users_followers }}</span> followers
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat">
+                                <span class="stat-count">{{ users_following }}</span> following
+                            </div>
+                        </div>
+                    </div>
+                    {% if not is_following and viewed_user_profile.is_private %}
+                        {% if follow_request_exists %}
+                            <p>Follow request already sent. Waiting for approval.</p>                    
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    <p>This is a private account, and you are not following.</p>
+                {% endif %}
+            </div>
+        </div>
+        {% if can_view_profile %}
+            {% include "blogs_cards.html" %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

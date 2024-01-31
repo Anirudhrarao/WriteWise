@@ -1,0 +1,141 @@
+    /* Custom Pagination Styles */
+
+    /* Active page */
+    .pagination .page-item.active .page-link {
+        z-index: 3;
+        color: #ffffff; /* Change to white */
+        background-color: #6c757d; /* Change to your preferred gray color */
+        border-color: #6c757d; /* Change to your preferred gray color */
+    }
+
+    /* Page links */
+    .pagination .page-link {
+        color: #6c757d; /* Change to your preferred gray color */
+        border: 1px solid #6c757d; /* Change to your preferred gray color */
+    }
+
+    /* Hover state for page links */
+    .pagination .page-link:hover {
+        color: #ffffff; /* Change to white */
+        background-color: #6c757d; /* Change to your preferred gray color */
+        border-color: #6c757d; /* Change to your preferred gray color */
+    }
+
+
+/* Custom Styles for Blog Posts */
+.blog-posts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* This sets the gap between articles */
+}
+
+.blog-posts article {
+  flex: 0 0 calc(33.333% - 20px); /* Adjust this to change the width of each article */
+  margin-bottom: 20px; /* Add space at the bottom of each article */
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+  border-radius: 10px; /* Adds rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a shadow for depth */
+}
+
+.blog-posts article:hover {
+  transform: scale(1.05);
+}
+
+.blog-posts article::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ccc, #999, #bbb, #ddd);  /* Change gradient colors */
+  background-size: 400% 400%;
+  z-index: -1;
+  transition: all 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: 10px; /* Matches the border radius of the card */
+}
+
+.blog-posts article:hover::before {
+  opacity: 1;
+  animation: gradientBackground 15s ease infinite;
+}
+
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
+
+/* Hero custom style */
+.hero {
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Courier New', monospace;
+  overflow: hidden;
+  position: relative; /* Needed for pseudo-element */
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle, rgba(255, 255, 255, 0.8) 10%, transparent 40%);
+  background-size: 150% 150%;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  animation: sparkle 2s linear infinite, fadeOut 2s ease-in-out infinite;
+  border-radius: 20px;
+}
+
+@keyframes sparkle {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    transform: scale(2) rotate(360deg);
+  }
+}
+
+@keyframes fadeOut {
+  0%, 50%, 100% {
+    opacity: 0;
+  }
+  25%, 75% {
+    opacity: 1;
+  }
+}
+
+@keyframes typewriter {
+  0%, 70% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.cursive-heading {
+  color: black;
+  font-size: 36px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}

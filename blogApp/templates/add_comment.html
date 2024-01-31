@@ -1,0 +1,8 @@
+<div class="container">
+    <!-- Assuming this is in your blog post detail template -->
+    <form method="post" action="{% url 'add_comment' blog_id=blog_details.id %}" class="comment-form">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Add your comment here" class="comment-textarea"></textarea>
+        <button type="submit" class="btn-comment">Add Comment</button>
+    </form>
+</div>

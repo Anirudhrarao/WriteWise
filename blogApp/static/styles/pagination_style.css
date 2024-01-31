@@ -1,0 +1,7 @@
+.pagination-wrapper {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff; /* Adjust the background color as needed */
+    z-index: 1000; /* Ensure the pagination is above other content */
+}

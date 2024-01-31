@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Update Profile</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="bio" class="form-label">Bio:</label>
+            <textarea id="bio" name="bio" class="form-control">{{ user_profile.bio }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="website" class="form-label">Website:</label>
+            <input type="text" id="website" name="website" value="{{ user_profile.website }}" class="form-control">
+        </div>
+
+        <div class="mb-3">
+            <label for="profile_picture" class="form-label">Profile Picture:</label>
+            <input type="file" id="profile_picture" name="profile_picture" class="form-control">
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" id="is_private" name="is_private" {% if user_profile.is_private %}checked{% endif %} class="form-check-input">
+            <label for="is_private" class="form-check-label">Private Account</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+</div>
+{% endblock %}

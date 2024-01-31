@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Search Results for "{{ query }}"</h3>
+                    </div>
+                    <div class="card-body">
+                        {% if users %}
+                            <ul class="list-group">
+                                {% for user in users %}
+                                    <li class="list-group-item">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{ user.userprofile.profile_picture.url }}" alt="" class="rounded-circle mr-4" width="60" height="60">
+                                                <div>
+                                                    <h5 class="font-weight-bold mb-1">
+                                                        <a href="{% url 'user_profile' user.username %}">{{ user.username }}</a>
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                {% if user not in request.user.userprofile.following.all %}
+                                                    <a href="{% url 'follow' username=user.username %}" class="btn btn-primary btn-sm">
+                                                        Follow
+                                                    </a>
+                                                {% else %}
+                                                    <a href="{% url 'unfollow' username=user.username %}" class="btn btn-primary btn-sm">
+                                                        Unfollow
+                                                    </a>
+                                                {% endif %}
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="text-center">No users found for "{{ query }}"</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

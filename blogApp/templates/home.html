@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/navbar_style.css' %}">
+<main>
+  <section class="hero">
+    <h1 class="cursive-heading">Welcome to My Blog</h1>
+    <p>Discover insightful articles on various topics.</p>
+  </section>
+
+  <section class="blog-posts">
+    {% for blog in blogs %}
+    <article>
+      <img src="{{ blog.featured_image.url }}" alt="Article Image">
+      <h2>{{ blog.title }}</h2>
+      <p>{{ blog.content }}</p>
+      <a href="{% url "blog-page" blog.id %}">Read more</a>
+    </article>
+    {% endfor %}
+  </section>
+      <!-- Pagination Links -->
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          {% if blogs.has_previous %}
+            <li class="page-item">
+              <a class="page-link"  href="?page=1">&laquo; First</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link"  href="?page={{ blogs.previous_page_number }}">Previous</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <span class="page-link">&laquo; First</span>
+            </li>
+            <li class="page-item disabled">
+              <span class="page-link" >Previous</span>
+            </li>
+          {% endif %}
+      
+          {% for i in blogs.paginator.page_range %}
+            <li class="page-item {% if blogs.number == i %}active{% endif %}">
+              <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+            </li>
+          {% endfor %}
+      
+          {% if blogs.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ blogs.next_page_number }}">Next</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link"  href="?page={{ blogs.paginator.num_pages }}">&raquo; Last</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <span class="page-link">Next</span>
+            </li>
+            <li class="page-item disabled">
+              <span class="page-link">&raquo; Last</span>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+</main>
+{% endblock %}

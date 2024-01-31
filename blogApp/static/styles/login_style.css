@@ -1,0 +1,27 @@
+/* Add this to your CSS file or style block */
+.container {
+    padding-top: 50px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.card h2 {
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
