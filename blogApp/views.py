@@ -12,7 +12,7 @@ from blogApp.models import UserProfile, BlogPost, Comment, FollowRequest
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-@login_required
+
 def home(request):
     """
     View function for the home page, displaying a paginated list of blog posts.
@@ -198,13 +198,13 @@ def signin_page(request):
                 return redirect('profile-page')
             else:
                 messages.error(request, 'Invalid username or password.')
-                return redirect('signin-page')
+                return redirect('register-page')
 
         return render(request, 'login_page.html')
 
     except User.DoesNotExist:
         messages.error(request, 'User does not exist.')
-        return redirect('signin-page')
+        return redirect('register-page')
     except Exception as e:
         # Log the exception for debugging purposes
         print(f"Error in signin page: {e}")
@@ -439,7 +439,7 @@ def register_user(request):
             user_profile = UserProfile.objects.create(user=user)
             user_profile.save()
             messages.success(request, f"Welcome, {user}! Your registration was successful.")
-            return redirect('signin-page')
+            return redirect('register-page')
         else:
             messages.error(request, "Password and confirm password do not match.")
             return redirect('register-user')
