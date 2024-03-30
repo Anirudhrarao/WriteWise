@@ -1,0 +1,39 @@
+{% include "blogApp/base.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/hero.css' %}">
+<link rel="stylesheet" href="{% static 'css/blogs_style.css' %}">
+<link rel="stylesheet" href="{% static 'css/pagination.css' %}">
+{% block content %}
+<main class="margin">
+    <section class="hero container mt-3">
+        <h1 class="cursive-heading">Welcome to My WriteWise</h1>
+        <p>Discover insightful articles on various topics.</p>
+    </section>
+
+    <section class="blog-posts container mt-4">
+        {% for blog in blogs %}
+        <article>
+            {% if blog.video %}
+                <div class="video-container">
+                    <video controls>
+                        <source src="{{ blog.video.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-overlay">
+                        <p>Click to play video</p>
+                    </div>
+                </div>
+            {% elif blog.featured_image %}
+                <img src="{{ blog.featured_image.url }}" alt="Article Image">
+            {% endif %}
+            <strong>{{blog.title}}</strong>
+            {% comment %} <h2>{{ blog.title|truncatechars:10 }}</h2> {% endcomment %}
+            <p>{{ blog.content|truncatewords:13 }}</p>
+            <a href="{% url 'blogApp:blog-details' blog.id %}">Read more</a>
+        </article>        
+        {% endfor %} 
+    </section>
+    
+    {% include "blogApp/pagination.html" %}
+</main>
+{% endblock  %}

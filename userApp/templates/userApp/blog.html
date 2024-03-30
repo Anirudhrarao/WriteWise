@@ -1,0 +1,26 @@
+<div class="projcard-container">
+    {% for blog in users_blogs %}
+    <div class="projcard projcard-blue">
+        <div class="projcard-innerbox">
+            <img class="projcard-img" src="{{ blog.featured_image.url }}" />
+            <div class="projcard-textbox">
+                <div class="projcard-title">{{ blog.title }}</div>
+                <div class="projcard-subtitle">{{ blog.author.username }}</div>
+                <div class="projcard-bar"></div>
+                <div class="projcard-description">{{ blog.content|truncatewords:60 }}</div>
+                <div class="projcard-interactions">
+                    {% if request.user.is_authenticated and request.user == profile.user %}
+                        <a href="{% url 'blogApp:blog-details' blog.id %}" class="btn btn-sm btn-primary">Read</a>
+                        <a href="{% url 'blogApp:update-blog' blog.id %}" class="btn btn-sm btn-primary">Update</a>
+                        <a href="{% url 'blogApp:delete-blog' blog.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    {% endif %}
+                    <div class="likes-comments">
+                        <span class="likes"><i class="fas fa-thumbs-up"></i> {{ blog.liked_by.all.count }}</span>
+                        <span class="comments"><i class="fas fa-comments"></i> {{ blog.comments.count }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>    

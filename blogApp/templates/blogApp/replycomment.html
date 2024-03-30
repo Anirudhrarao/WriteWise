@@ -1,0 +1,14 @@
+{% include "blogApp/base.html" %}
+{% block content %}
+<div class="container form-container">
+    <h2>Reply to Comment</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="reply_content">Your Reply:</label>
+            <textarea id="reply_content" name="content" class="form-control" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Reply</button>
+    </form>
+</div>
+{% endblock  %}

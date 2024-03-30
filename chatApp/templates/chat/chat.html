@@ -1,0 +1,33 @@
+{% include "blogApp/base.html" %}
+{% block content %}
+<h1>Chat</h1>
+<div id="chat-messages"></div>
+<input type="text" id="message-input" placeholder="Type your message...">
+<button id="send-button">Send</button>
+
+<script>
+    var chatSocket = new WebSocket('ws://' + window.location.host + '/ws/chat/');
+
+    chatSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        displayMessage(data.sender, data.message, data.timestamp);
+    };
+
+    document.querySelector('#send-button').onclick = function(e) {
+        var messageInputDom = document.querySelector('#message-input');
+        var message = messageInputDom.value;
+        var receiverUsername = 'receiver_username_here';  // Replace with the username of the receiver
+        chatSocket.send(JSON.stringify({
+            'content': message,
+            'receiver': receiverUsername
+        }));
+        messageInputDom.value = '';
+    };
+
+    function displayMessage(sender, message, timestamp) {
+        var messageDiv = document.createElement('div');
+        messageDiv.innerHTML = '<strong>' + sender + '</strong>: ' + message + ' (' + timestamp + ')';
+        document.querySelector('#chat-messages').appendChild(messageDiv);
+    }
+</script>
+{% endblock  %}

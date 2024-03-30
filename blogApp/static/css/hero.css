@@ -1,0 +1,43 @@
+/* Adjusted Hero custom style with typing animation */
+.hero {
+    padding: 10px; /* Increased padding for better spacing */
+    text-align: center;
+    background-color: #f5f5f5; /* Light background color */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    margin-top: 70px; /* Add margin to push the hero section below the navbar */
+    position: relative;
+    border-radius: 20px;
+    z-index: 1; /* Ensure the hero section stays above other content */
+}
+
+.cursive-heading {
+    color: #333; /* Dark text color for better contrast */
+    font-size: 30px; /* Increased font size for emphasis */
+    font-weight: bold; /* Add bold weight for emphasis */
+    text-transform: uppercase;
+    margin-bottom: 20px; /* Add spacing below the heading */
+    overflow: hidden; /* Hide overflow for the typing animation */
+    white-space: nowrap; /* Prevent text wrapping for the typing animation */
+    border-right: 3px solid transparent; /* Add a transparent border to simulate typing */
+    animation: typing 3s steps(30, end) 1; /* Typing animation, plays once */
+}
+
+.hero p {
+    color: #666; /* Medium text color */
+    font-size: 18px; /* Regular font size */
+    margin-bottom: 30px; /* Add more spacing below the paragraph */
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.margin {
+    margin-top: 80px!important;
+}
+

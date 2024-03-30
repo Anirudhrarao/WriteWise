@@ -1,0 +1,163 @@
+{% extends 'blogApp/base.html' %} {% load static %} {% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <div class="card mb-4 mx-auto">
+        <div class="position-relative">
+          <div class="overflow-hidden position-relative" style="height: 600px">
+            <img
+              src="{{ blog.featured_image.url }}"
+              class="card-img-top blur-image"
+              alt="Blog Image"
+            />
+            <div
+              class="card-img-overlay text-white d-flex flex-column justify-content-end"
+            >
+              <div
+                class="scrollable-text"
+                style="max-height: 300px; overflow-y: auto"
+              >
+                <h5 class="card-title">{{ blog.title }}</h5>
+                <p class="card-text">{{ blog.content }}</p>
+                <hr />
+
+                <!-- Comment Form -->
+                {% include "blogApp/commentform.html" %}
+
+                <!-- Comments -->
+                {% include "blogApp/commentdisplay.html" %}
+
+                <!-- Like, Comment, Share buttons -->
+              </div>
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-primary btn-radius"
+                  onclick="likePost({{ blog.id }})"
+                >
+                  <i class="fas fa-heart"></i> Like
+                  <span id="likeCount">{{ noOfLikes }}</span>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-secondary"
+                  onclick="toggleCommentForm()"
+                >
+                  <i class="fas fa-comment"></i> Comment
+                  <span id="commentCount">{{ noOfComments }}</span>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-outline-success btn-radius"
+                >
+                  <i class="fas fa-share"></i> Share
+                </button>
+              </div>
+              <small class="text-muted"
+                >Posted on {{ blog.publication_date|date:"F d, Y" }}</small
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Blog like and comment form -->
+<script>
+  function likePost(blogId) {
+    fetch(`/${blogId}/like/`, {
+      method: "POST",
+      headers: {
+        "X-CSRFToken": "{{ csrf_token }}", // Include CSRF token if required
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Post liked successfully");
+          var newLikeCount = response.noOfLikes;
+          $("#likeCount").text(newLikeCount);
+          location.reload();
+        } else {
+          console.error("Failed to like post");
+        }
+      })
+      .catch((error) => {
+        console.error("Error occurred:", error);
+      });
+  }
+
+  // Comment form toggle
+  function toggleCommentForm() {
+    var commentForm = document.getElementById("commentForm");
+    if (commentForm.style.display === "none") {
+      commentForm.style.display = "block";
+    } else {
+      commentForm.style.display = "none";
+    }
+  }
+
+  // Ajax for comment form
+  document.addEventListener('DOMContentLoaded', function() {
+    var commentForm = document.getElementById('addCommentForm'); // Select the form element
+    
+    if (commentForm) { // Check if the form element exists
+      commentForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        
+        var formData = new FormData(this); // Create FormData object from form
+        
+        // Send AJAX request using Fetch API
+        fetch(this.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-CSRFToken': "{{ csrf_token }}" // Include CSRF token
+          }
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          var commentCount = response.commentCount;
+          $("#commentCount").text(commentCount);
+          location.reload();
+          return response.json(); // Parse response JSON
+        })
+        .then(data => {
+          // Assuming you have a function to append the new comment to the UI
+          // You should implement this function to update the UI with the new comment
+          appendCommentToUI(data);
+          
+          // Clear textarea after successful submission
+          commentForm.reset(); // Call reset() on the form element
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      });
+    } else {
+      console.error('Comment form element not found');
+    }
+  });
+  
+
+  // Function to append the new comment to the UI
+function appendCommentToUI(commentData) {
+  // Assuming you have a container element for comments with ID "comments"
+  // Append the new comment HTML to this container
+  document.getElementById('comments').insertAdjacentHTML('beforeend', 
+    '<div class="comment">' +
+    '<div class="comment-header">' +
+    '<img src="{% static "images/man.png" %}" class="profile-picture" alt="Profile Picture" />' +
+    '<div class="comment-info">' +
+    '<span class="comment-author">' + commentData.author + '</span>' +
+    '<div class="comment-content">' + commentData.content + '</div>' +
+    '</div></div>' +
+    '<span class="comment-date">' + commentData.publication_date + '</span></div>'
+  );
+}
+</script>
+{% endblock %}

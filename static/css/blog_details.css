@@ -1,0 +1,56 @@
+.card {
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+}
+
+.card-title {
+    font-size: 34px;
+    font-weight: bold;
+    color: rgb(72, 72, 255);
+    font-family: cursive;
+}
+
+.card-text {
+    font-size: 20px;
+}
+
+.btn-group {
+    margin-top: 20px; /* Increase margin top for better spacing */
+    text-align: center; /* Center button group horizontally */
+}
+
+.btn {
+    font-size: 18px; /* Increase button font size */
+    margin: 0 5px; /* Add margin between buttons */
+}
+
+.text-muted {
+    font-size: 15px;
+    text-align: center; /* Center horizontally */
+    margin-top: 10px; /* Adjust margin top */
+}
+
+/* Hide scrollbar for WebKit browsers */
+::-webkit-scrollbar {
+    width: 0;  /* Set width to zero */
+    background: transparent;  /* Set background to transparent */
+}
+
+/* Optional: Hide scrollbar for Firefox */
+.scrollable-text {
+    scrollbar-width: none;  /* Hide scrollbar for Firefox */
+}
+
+.btn-radius{
+    border-radius: 20px;
+}

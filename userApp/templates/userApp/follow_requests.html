@@ -1,0 +1,28 @@
+{% include "blogApp/base.html" %}
+{% load static %}
+<link rel="stylesheet" href="{%  static 'css/follow_requests.css' %}">
+{% block content %}
+<main>
+    <div class="container">
+        <h1>Friend Requests</h1>
+        <div class="request-list">
+            {% for request in follow_requests %}
+            <div class="request-item">
+                <div class="profile-picture">
+                    <img src="{{ request.from_user.profile.profile_picture.url }}" alt="Profile Picture">
+                </div>
+                <div class="profile-info">
+                    {% comment %} <h2></h2> {% endcomment %}
+                    <strong>{{ request.from_user.username }}</strong>
+                    <p>Sent you a friend request!</p>
+                </div>
+                <div class="button-group">
+                    <a href="{% url 'userApp:accept-request' request.id %}" class="btn btn-primary">Accept</a>
+                    <a href="{% url 'userApp:reject-request' request.id %}" class="btn btn-danger">Remove</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% endblock  %}

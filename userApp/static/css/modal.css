@@ -1,0 +1,43 @@
+.modal-body {
+    max-height: 300px; /* Set a max height for the follower list */
+    overflow-y: auto; /* Add scroll if the content overflows vertically */
+  }
+  
+  .follower {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc; /* Add a border between each follower */
+  }
+  
+  .follower-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .follower-info span {
+    margin-right: 10px; /* Add some spacing between username and profile picture */
+  }
+  
+  .remove-follower {
+    background-color: #f44336; /* Red background color */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .remove-follower:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+    color: white;
+  }
+  
+  .follower-info img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }

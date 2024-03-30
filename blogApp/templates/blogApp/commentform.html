@@ -1,0 +1,30 @@
+<div
+  id="commentForm"
+  style="
+    display: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+  "
+>
+  <form
+    id="addCommentForm"
+    method="post"
+    action="{% url 'blogApp:comment-blog' pk=blog.id %}"
+  >
+    {% csrf_token %}
+    <textarea
+      name="content"
+      class="form-control"
+      rows="3"
+      style="
+        margin-bottom: 10px;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+      "
+      placeholder="Write your comment here"
+    ></textarea>
+    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+  </form>
+</div>

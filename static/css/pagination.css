@@ -1,0 +1,20 @@
+    /* Custom Pagination Styles */
+    .pagination .page-item.active .page-link {
+        z-index: 3;
+        color: #ffffff; /* Change to white */
+        background-color: #6c757d; /* Change to your preferred gray color */
+        border-color: #6c757d; /* Change to your preferred gray color */
+    }
+
+    /* Page links */
+    .pagination .page-link {
+        color: #6c757d; /* Change to your preferred gray color */
+        border: 1px solid #6c757d; /* Change to your preferred gray color */
+    }
+
+    /* Hover state for page links */
+    .pagination .page-link:hover {
+        color: #ffffff; /* Change to white */
+        background-color: #6c757d; /* Change to your preferred gray color */
+        border-color: #6c757d; /* Change to your preferred gray color */
+    }

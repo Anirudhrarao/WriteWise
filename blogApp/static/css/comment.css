@@ -1,0 +1,80 @@
+.comment {
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.comment-info {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.comment-author {
+  font-weight: bold;
+}
+
+.comment-date {
+  margin-left: 10px;
+  color: #999; /* Adjust the color as needed */
+}
+
+.comment-content {
+  margin-right: 10px;
+}
+
+.replies {
+  margin-left: 60px; /* Indent replies */
+}
+
+.reply {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.reply .profile-picture {
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.reply-info {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.reply-author {
+  font-weight: bold;
+}
+
+.reply-date {
+  margin-left: 10px;
+  color: #999; /* Adjust the color as needed */
+}
+
+.reply-content {
+  margin-top: 5px;
+}
+
+/* comment reply link */
+
+.comment-content-wrapper {
+  display: flex; 
+  align-items: center;
+}
+
+.reply-link {
+  text-decoration: none;
+  color: #F5F5F5; /* Adjust the color as needed */
+}
+
+.reply-link:hover {
+  text-decoration: none; 
+  cursor: pointer;
+  color: #BDBDBD;
+}

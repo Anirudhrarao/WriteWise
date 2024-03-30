@@ -1,0 +1,33 @@
+{% extends 'blogApp/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">Update Profile</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="profile_picture" class="form-label">Profile Picture</label>
+                            <input type="file" class="form-control" id="profile_picture" name="profile_picture">
+                        </div>
+                        <div class="mb-3">
+                            <label for="bio" class="form-label">Bio</label>
+                            <textarea class="form-control" id="bio" name="bio" rows="5">{{ user_profile.bio }}</textarea>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="is_private" name="is_private" {% if user_profile.is_private %}checked{% endif %}>
+                            <label class="form-check-label" for="is_private">Private Profile</label>
+                        </div>
+                        <button type="submit" class="btn btn-dark">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
